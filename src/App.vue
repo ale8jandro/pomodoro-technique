@@ -1,18 +1,29 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <Header />
+    <PomodoroButtons />
+    <Timer />
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from '@/components/Header';
+import PomodoroButtons from '@/components/PomodoroButtons';
+import Timer from '@/components/Timer';
+import TimerButtons from '@/components/TimerButtons';
+import Shortcuts from '@/components/Shortcuts';
+import TodoList from '@/components/TodoList';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    Header,
+    PomodoroButtons,
+    Timer,
+    TimerButtons,
+    Shortcuts,
+    TodoList,
+  },
 }
 </script>
 

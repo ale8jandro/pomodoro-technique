@@ -5,7 +5,7 @@
                 <div>Pomodoro Technique</div>
             </v-col>
             <v-col>
-                <Customize />
+                <CustomizeSettings />
             </v-col>
             <v-col>
                 <PomodoroTechnique />
@@ -16,13 +16,13 @@
 
 <script>
 import PomodoroTechnique from '@/components/PomodoroTechnique';
-import Customize from '@/components/Customize';
+import CustomizeSettings from '@/components/CustomizeSettings';
 
 export default {
     name: 'Header',
     components: {
         PomodoroTechnique,
-        Customize,
+        CustomizeSettings,
     },
 }
 </script>

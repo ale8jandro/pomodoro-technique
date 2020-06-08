@@ -3,6 +3,9 @@
     <Header />
     <PomodoroButtons />
     <Timer />
+    <TimerButtons />
+    <Shortcuts />
+    <TodoList />
   </v-app>
 </template>
 

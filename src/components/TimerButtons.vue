@@ -43,7 +43,7 @@ export default {
         playClick() {
             if (this.iconPlay === icons.play) {
                 this.iconPlay = icons.pause;
-                intervalFunction = setInterval(this.decrementSecond, 1000);
+                intervalFunction = setInterval(this.decrementSecond, 1000, this.getActualTime());
             } else {
                 this.iconPlay = icons.play;
                 clearInterval(intervalFunction);
@@ -67,7 +67,6 @@ export default {
     },
     watch: {
         counterFinished(newValue, oldValue) {
-            console.log('entro');
             this.nextStage();
         },
     },

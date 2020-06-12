@@ -29,9 +29,15 @@ export default new Vuex.Store({
     setSelectedTime(state, newSelectedTime) {
       state.selectedTime = newSelectedTime;
     },
-    setAutoStartPomodoro() {
-      
-    }
+    setAutoStartPomodoro(state, newAutoStartPomodoro) {
+      state.autoStartPomodoro = newAutoStartPomodoro;
+    },
+    setAutoStartBreak(state, newAutoStartBreak) {
+      state.autoStartBreak = newAutoStartBreak;
+    },
+    setOneMinuteNotification(state, newOneMinuteNotification) {
+      state.oneMinuteNotification = newOneMinuteNotification;
+    },
   },
   actions: {
   },

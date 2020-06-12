@@ -4,9 +4,10 @@ export default {
         minutes: 25,
         seconds: 0,
         counterFinished: false,
+        percentage: 0,
     },
     mutations: {
-        decrementSecond(state) {
+        decrementSecond(state, actualTime) {
             if (state.seconds === 0 && state.minutes === 0) {
                 state.counterFinished = true;
             } else if (state.seconds === 0) {
@@ -15,6 +16,9 @@ export default {
             } else {
                 state.seconds -= 1;
             }
+            const totalSeconds = actualTime * 60;
+            const secondsElapseds = totalSeconds - (state.minutes * 60 + state.seconds);
+            state.percentage = ((secondsElapseds/totalSeconds) * 100).toFixed(3);
         },
         startCounting(state) {
             state.counterFinished = false;
@@ -27,6 +31,7 @@ export default {
             state.seconds = 0;
             state.counterFinished = false;
             state.minutes = payload;
+            state.percentage = 0;
         },
     },
 }

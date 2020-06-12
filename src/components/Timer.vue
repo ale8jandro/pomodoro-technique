@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-progress-linear
-            :value="progress"
+            :value="percentage"
             height="150"
             reactive>
             <strong class="display-4">{{ `${minutesFormatted}:${secondsFormatted}` }}</strong>
@@ -15,10 +15,7 @@ import { mapState } from 'vuex';
 export default {
     name: 'Timer',
     computed: {
-        ...mapState('timer', ['minutes', 'seconds']),
-        progress() {
-            return 76.5;
-        },
+        ...mapState('timer', ['minutes', 'seconds', 'percentage']),
         minutesFormatted() {
             if (this.minutes < 10) {
                 return `0${this.minutes}`;

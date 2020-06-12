@@ -85,7 +85,7 @@ export default {
         ...mapState(['pomodoroTime', 'shortBreakTime', 'longBreakTime', 'autoStartPomodoro', 'autoStartBreak', 'oneMinuteNotification']),
     },
     methods: {
-        ...mapMutations(['setPomodoroTime', 'setShortBreakTime', 'setLongBreakTime']),
+        ...mapMutations(['setPomodoroTime', 'setShortBreakTime', 'setLongBreakTime', 'setAutoStartPomodoro', 'setAutoStartBreak', 'setOneMinuteNotification']),
         openDialog() {
             this.resetForm();
             this.dialog = true;
@@ -102,13 +102,14 @@ export default {
             this.setPomodoroTime(this.pomodoroTimeTemporal);
             this.setShortBreakTime(this.shortBreakTimeTemporal);
             this.setLongBreakTime(this.longBreakTimeTemporal);
+            this.setAutoStartPomodoro(this.autoStartPomodoroTemporal);
+            this.setAutoStartBreak(this.autoStartBreakTemporal);
+            this.setOneMinuteNotification(this.oneMinuteNotificationTemporal);
             this.dialog = false;
         },
     },
     created() {
-        this.pomodoroTimeTemporal = this.pomodoroTime;
-        this.shortBreakTimeTemporal = this.shortBreakTime;
-        this.longBreakTimeTemporal = this.longBreakTime;
+        this.resetForm();
     },
 }
 </script>

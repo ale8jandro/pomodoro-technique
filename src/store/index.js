@@ -12,6 +12,9 @@ export default new Vuex.Store({
     cycles: 4,
     selectedTime: 'pomodoroTime',
     breaksNumber: 0,
+    autoStartPomodoro: true,
+    autoStartBreak: true,
+    oneMinuteNotification: false,
   },
   mutations: {
     setPomodoroTime(state, newTime) {
@@ -26,6 +29,9 @@ export default new Vuex.Store({
     setSelectedTime(state, newSelectedTime) {
       state.selectedTime = newSelectedTime;
     },
+    setAutoStartPomodoro() {
+      
+    }
   },
   actions: {
   },

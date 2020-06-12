@@ -36,7 +36,7 @@
                     <v-subheader>General</v-subheader>
                     <v-list-item>
                         <v-list-item-action>
-                            <v-checkbox v-model="autoStartPomodoro"></v-checkbox>
+                            <v-checkbox v-model="autoStartPomodoroTemporal"></v-checkbox>
                         </v-list-item-action>
                         <v-list-item-content>
                             <v-list-item-title>Auto Start Pomodoro</v-list-item-title>
@@ -45,7 +45,7 @@
                     </v-list-item>
                     <v-list-item>
                         <v-list-item-action>
-                            <v-checkbox v-model="autoStartBreak"></v-checkbox>
+                            <v-checkbox v-model="autoStartBreakTemporal"></v-checkbox>
                         </v-list-item-action>
                         <v-list-item-content>
                             <v-list-item-title>Auto Start Breaks</v-list-item-title>
@@ -54,7 +54,7 @@
                     </v-list-item>
                     <v-list-item>
                         <v-list-item-action>
-                            <v-checkbox v-model="oneMinuteNotification"></v-checkbox>
+                            <v-checkbox v-model="oneMinuteNotificationTemporal"></v-checkbox>
                         </v-list-item-action>
                         <v-list-item-content>
                             <v-list-item-title>One minute notification</v-list-item-title>
@@ -74,15 +74,15 @@ export default {
     name: 'CustomizeSettings',
     data: () => ({
         dialog: false,
-        autoStartPomodoro: false,
-        autoStartBreak: true,
-        oneMinuteNotification: false,
+        autoStartPomodoroTemporal: true,
+        autoStartBreakTemporal: true,
+        oneMinuteNotificationTemporal: false,
         pomodoroTimeTemporal: 25,
         shortBreakTimeTemporal: 5,
         longBreakTimeTemporal: 15,
     }),
     computed: {
-        ...mapState(['pomodoroTime', 'shortBreakTime', 'longBreakTime']),
+        ...mapState(['pomodoroTime', 'shortBreakTime', 'longBreakTime', 'autoStartPomodoro', 'autoStartBreak', 'oneMinuteNotification']),
     },
     methods: {
         ...mapMutations(['setPomodoroTime', 'setShortBreakTime', 'setLongBreakTime']),
@@ -94,6 +94,9 @@ export default {
             this.pomodoroTimeTemporal = this.pomodoroTime;
             this.shortBreakTimeTemporal = this.shortBreakTime;
             this.longBreakTimeTemporal = this.longBreakTime;
+            this.autoStartPomodoroTemporal = this.autoStartPomodoro;
+            this.autoStartBreakTemporal = this.autoStartBreak;
+            this.oneMinuteNotificationTemporal = this.oneMinuteNotification;
         },
         saveSettings() {
             this.setPomodoroTime(this.pomodoroTimeTemporal);

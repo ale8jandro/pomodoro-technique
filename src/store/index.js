@@ -9,7 +9,7 @@ export default new Vuex.Store({
     pomodoroTime: 25,
     shortBreakTime: 5,
     longBreakTime: 15,
-    breaks: 4,
+    cycles: 4,
     selectedTime: 'pomodoroTime',
     breaksNumber: 0,
   },

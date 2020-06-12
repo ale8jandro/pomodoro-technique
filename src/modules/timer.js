@@ -1,14 +1,14 @@
 export default {
     namespaced: true,
     state: {
-        minutes: 0,
+        minutes: 25,
         seconds: 0,
-        finished: true,
+        counterFinished: false,
     },
     mutations: {
         decrementSecond(state) {
             if (state.seconds === 0 && state.minutes === 0) {
-                state.finished = true;
+                state.counterFinished = true;
             } else if (state.seconds === 0) {
                 state.seconds = 59;
                 state.minutes -= 1;
@@ -17,7 +17,7 @@ export default {
             }
         },
         startCounting(state) {
-            state.finished = false;
+            state.counterFinished = false;
         },
         setMinutes(state, payload) {
             state.minutes = payload;
@@ -25,7 +25,7 @@ export default {
         },
         resetTimer(state, payload) {
             state.seconds = 0;
-            state.finished = true;
+            state.counterFinished = false;
             state.minutes = payload;
         },
     },

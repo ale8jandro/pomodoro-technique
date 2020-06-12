@@ -35,14 +35,14 @@ export default {
         iconPlay: 'mdi-play-circle',
     }),
     computed: {
-        ...mapState('timer', ['minutes', 'seconds']),
+        ...mapState('timer', ['counterFinished']),
+        ...mapState(['pomodoroTime', 'shortBreakTime', 'longBreakTime', 'selectedTime']),
     },
     methods: {
         ...mapMutations('timer', ['decrementSecond', 'startCounting', 'resetTimer']),
         playClick() {
             if (this.iconPlay === icons.play) {
                 this.iconPlay = icons.pause;
-                this.startCounting();
                 intervalFunction = setInterval(this.decrementSecond, 1000);
             } else {
                 this.iconPlay = icons.play;
@@ -51,9 +51,24 @@ export default {
         },
         stopClick() {
             this.iconPlay = icons.play;
+            clearInterval(intervalFunction);
+            this.resetTimer(this.pomodoroTime);
         },
         refreshClick() {
-            this.resetTimer();
+            const actualTime = this.getActualTime();
+            this.resetTimer(this.getActualTime());
+        },
+        nextStage() {
+            clearInterval(intervalFunction);
+        },
+        getActualTime() {
+            return this[this.selectedTime];
+        },
+    },
+    watch: {
+        counterFinished(newValue, oldValue) {
+            console.log('entro');
+            this.nextStage();
         },
     },
 }

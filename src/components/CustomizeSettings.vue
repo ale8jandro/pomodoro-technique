@@ -1,9 +1,7 @@
 <template>
     <div>
+        <v-btn rounded depressed @click="openDialog">Settings</v-btn>
         <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
-            <template v-slot:activator="{ on }">
-                <v-btn rounded depressed v-on="on">Settings</v-btn>
-            </template>
             <v-card>
                 <v-toolbar dark color="red">
                     <v-btn icon dark @click="dialog = false">
@@ -12,24 +10,24 @@
                     <v-toolbar-title>Settings</v-toolbar-title>
                     <v-spacer></v-spacer>
                     <v-toolbar-items>
-                        <v-btn dark text @click="dialog = false">Save</v-btn>
+                        <v-btn dark text @click="saveSettings">Save</v-btn>
                     </v-toolbar-items>
                 </v-toolbar>
                 <v-list three-line subheader class="text-left">
                     <v-subheader>Set Custom Times (in minutes)</v-subheader>
                     <v-list-item>
                         <v-list-item-content>
-                            <v-text-field label="Pomodoro Time" :value="pomodoroTime"></v-text-field>
+                            <v-text-field label="Pomodoro Time" v-model="pomodoroTimeTemporal"></v-text-field>
                         </v-list-item-content>
                     </v-list-item>
                     <v-list-item>
                         <v-list-item-content>
-                            <v-text-field label="Short Break" :value="shortBreakTime"></v-text-field>
+                            <v-text-field label="Short Break" v-model="shortBreakTimeTemporal"></v-text-field>
                         </v-list-item-content>
                     </v-list-item>
                     <v-list-item>
                         <v-list-item-content>
-                            <v-text-field label="Long Break" :value="longBreakTime"></v-text-field>
+                            <v-text-field label="Long Break" v-model="longBreakTimeTemporal"></v-text-field>
                         </v-list-item-content>
                     </v-list-item>
                 </v-list>
@@ -79,12 +77,35 @@ export default {
         autoStartPomodoro: false,
         autoStartBreak: true,
         oneMinuteNotification: false,
+        pomodoroTimeTemporal: 25,
+        shortBreakTimeTemporal: 5,
+        longBreakTimeTemporal: 15,
     }),
     computed: {
         ...mapState(['pomodoroTime', 'shortBreakTime', 'longBreakTime']),
     },
     methods: {
         ...mapMutations(['setPomodoroTime', 'setShortBreakTime', 'setLongBreakTime']),
+        openDialog() {
+            this.resetForm();
+            this.dialog = true;
+        },
+        resetForm() {
+            this.pomodoroTimeTemporal = this.pomodoroTime;
+            this.shortBreakTimeTemporal = this.shortBreakTime;
+            this.longBreakTimeTemporal = this.longBreakTime;
+        },
+        saveSettings() {
+            this.setPomodoroTime(this.pomodoroTimeTemporal);
+            this.setShortBreakTime(this.shortBreakTimeTemporal);
+            this.setLongBreakTime(this.longBreakTimeTemporal);
+            this.dialog = false;
+        },
+    },
+    created() {
+        this.pomodoroTimeTemporal = this.pomodoroTime;
+        this.shortBreakTimeTemporal = this.shortBreakTime;
+        this.longBreakTimeTemporal = this.longBreakTime;
     },
 }
 </script>

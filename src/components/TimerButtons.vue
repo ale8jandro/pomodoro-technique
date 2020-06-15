@@ -27,6 +27,11 @@ const icons = {
     play: 'mdi-play-circle',
     pause: 'mdi-pause-circle',
 };
+const times = {
+    POMODORO_TIME: 'pomodoroTime',
+    SHORT_BREAK_TIME: 'shortBreakTime',
+    LONG_BREAK_TIME: 'longBreakTime',
+};
 let intervalFunction;
 
 export default {
@@ -36,10 +41,11 @@ export default {
     }),
     computed: {
         ...mapState('timer', ['counterFinished']),
-        ...mapState(['pomodoroTime', 'shortBreakTime', 'longBreakTime', 'selectedTime']),
+        ...mapState(['pomodoroTime', 'shortBreakTime', 'longBreakTime', 'selectedTime', 'cycles', 'breaksNumber', 'autoStartBreak', 'autoStartPomodoro']),
     },
     methods: {
         ...mapMutations('timer', ['decrementSecond', 'startCounting', 'resetTimer']),
+        ...mapMutations(['setSelectedTime', 'incrementBreaksNumber', 'resetBreaksNumber']),
         playClick() {
             if (this.iconPlay === icons.play) {
                 this.iconPlay = icons.pause;
@@ -50,6 +56,7 @@ export default {
             }
         },
         stopClick() {
+            this.resetBreaksNumber();
             this.setTime(this.pomodoroTime);
         },
         refreshClick() {
@@ -58,6 +65,33 @@ export default {
         },
         nextStage() {
             clearInterval(intervalFunction);
+            if (this.selectedTime === times.POMODORO_TIME) {
+                this.startBreakTime();
+            } else {
+                this.startPomodoroTime();
+            }
+        },
+        startPomodoroTime() {
+            this.setSelectedTime(times.POMODORO_TIME);
+            if (this.selectedTime === times.LONG_BREAK_TIME) {
+                this.stopClick();
+            } else {
+                this.incrementBreaksNumber();
+                this.resetTimer(this.getActualTime());
+                if (this.autoStartPomodoro) {
+                    intervalFunction = setInterval(this.decrementSecond, 1000, this.getActualTime());
+                }
+            }
+        },
+        startBreakTime() {
+            this.setSelectedTime(this.cycles === this.breaksNumber ? times.LONG_BREAK_TIME : times.SHORT_BREAK_TIME);
+            this.resetTimer(this.getActualTime());
+            this.checkAutoStartBreak();
+        },
+        checkAutoStartBreak() {
+            if (this.autoStartBreak) {
+                intervalFunction = setInterval(this.decrementSecond, 1000, this.getActualTime());
+            }
         },
         getActualTime() {
             return this[this.selectedTime];
@@ -70,7 +104,9 @@ export default {
     },
     watch: {
         counterFinished(newValue, oldValue) {
-            this.nextStage();
+            if (!oldValue && newValue) {
+                this.nextStage();
+            }
         },
     },
     created() {

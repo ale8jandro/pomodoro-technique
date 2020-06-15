@@ -38,6 +38,12 @@ export default new Vuex.Store({
     setOneMinuteNotification(state, newOneMinuteNotification) {
       state.oneMinuteNotification = newOneMinuteNotification;
     },
+    incrementBreaksNumber(state) {
+      state.breaksNumber += 1;
+    },
+    resetBreaksNumber(state) {
+      state.breaksNumber = 0;
+    },
   },
   actions: {
   },

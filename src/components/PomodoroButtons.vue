@@ -26,19 +26,18 @@ export default {
         ...mapMutations(['setSelectedTime']),
         ...mapMutations('timer', ['setMinutes']),
         selectPomodoro() {
-            this.setSelectedTime('pomodoroTime');
-            this.setMinutes(this.pomodoroTime);
-            this.$eventBus.$emit('setTime', this.pomodoroTime);
+            this.selectTime('pomodoroTime', this.pomodoroTime);
         },
         selectShortBreak() {
-            this.setSelectedTime('shortBreakTime');
-            this.setMinutes(this.shortBreakTime);
-            this.$eventBus.$emit('setTime', this.shortBreakTime);
+            this.selectTime('shortBreakTime', this.shortBreakTime);
         },
         selectLongBreak() {
-            this.setSelectedTime('longBreakTime');
-            this.setMinutes(this.longBreakTime);
-            this.$eventBus.$emit('setTime', this.longBreakTime);
+            this.selectTime('longBreakTime', this.longBreakTime);
+        },
+        selectTime(timeName, time) {
+            this.setSelectedTime(timeName);
+            this.setMinutes(time);
+            this.$eventBus.$emit('setTime', time);
         },
     },
 }

@@ -28,14 +28,17 @@ export default {
         selectPomodoro() {
             this.setSelectedTime('pomodoroTime');
             this.setMinutes(this.pomodoroTime);
+            this.$eventBus.$emit('setTime', this.pomodoroTime);
         },
         selectShortBreak() {
             this.setSelectedTime('shortBreakTime');
             this.setMinutes(this.shortBreakTime);
+            this.$eventBus.$emit('setTime', this.shortBreakTime);
         },
         selectLongBreak() {
             this.setSelectedTime('longBreakTime');
             this.setMinutes(this.longBreakTime);
+            this.$eventBus.$emit('setTime', this.longBreakTime);
         },
     },
 }

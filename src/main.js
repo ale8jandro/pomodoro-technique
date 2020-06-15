@@ -4,6 +4,7 @@ import store from './store';
 import vuetify from './plugins/vuetify';
 
 Vue.config.productionTip = false;
+Vue.prototype.$eventBus = new Vue();
 
 new Vue({
   store,

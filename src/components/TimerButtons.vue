@@ -50,9 +50,7 @@ export default {
             }
         },
         stopClick() {
-            this.iconPlay = icons.play;
-            clearInterval(intervalFunction);
-            this.resetTimer(this.pomodoroTime);
+            this.setTime(this.pomodoroTime);
         },
         refreshClick() {
             const actualTime = this.getActualTime();
@@ -64,11 +62,19 @@ export default {
         getActualTime() {
             return this[this.selectedTime];
         },
+        setTime(time) {
+            this.iconPlay = icons.play;
+            clearInterval(intervalFunction);
+            this.resetTimer(time);
+        },
     },
     watch: {
         counterFinished(newValue, oldValue) {
             this.nextStage();
         },
+    },
+    created() {
+        this.$eventBus.$on('setTime', this.setTime);
     },
 }
 </script>

@@ -1,12 +1,10 @@
 <template>
-    <div>
-        <v-progress-linear
-            :value="percentage"
-            height="150"
-            reactive>
-            <strong class="display-4">{{ `${minutesFormatted}:${secondsFormatted}` }}</strong>
-            </v-progress-linear>
-    </div>
+    <v-progress-linear
+        :value="percentage"
+        height="150"
+        reactive>
+        <strong class="display-4">{{ `${minutesFormatted}:${secondsFormatted}` }}</strong>
+    </v-progress-linear>
 </template>
 
 <script>

@@ -11,7 +11,7 @@ export default new Vuex.Store({
     longBreakTime: 15,
     cycles: 4,
     selectedTime: 'pomodoroTime',
-    breaksNumber: 0,
+    breaksNumber: 1,
     autoStartPomodoro: true,
     autoStartBreak: true,
     oneMinuteNotification: false,
@@ -42,7 +42,7 @@ export default new Vuex.Store({
       state.breaksNumber += 1;
     },
     resetBreaksNumber(state) {
-      state.breaksNumber = 0;
+      state.breaksNumber = 1;
     },
   },
   actions: {

@@ -4,6 +4,7 @@
     <PomodoroButtons />
     <Timer />
     <TimerButtons />
+    <Breaks />
     <Shortcuts />
     <TodoList />
   </v-app>
@@ -14,6 +15,7 @@ import Header from '@/components/Header';
 import PomodoroButtons from '@/components/PomodoroButtons';
 import Timer from '@/components/Timer';
 import TimerButtons from '@/components/TimerButtons';
+import Breaks from '@/components/Breaks';
 import Shortcuts from '@/components/Shortcuts';
 import TodoList from '@/components/TodoList';
 
@@ -24,6 +26,7 @@ export default {
     PomodoroButtons,
     Timer,
     TimerButtons,
+    Breaks,
     Shortcuts,
     TodoList,
   },

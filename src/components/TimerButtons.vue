@@ -80,6 +80,8 @@ export default {
                 this.resetTimer(this.getActualTime());
                 if (this.autoStartPomodoro) {
                     intervalFunction = setInterval(this.decrementSecond, 1000, this.getActualTime());
+                } else {
+                    this.iconPlay = icons.play;
                 }
             }
         },
@@ -91,6 +93,8 @@ export default {
         checkAutoStartBreak() {
             if (this.autoStartBreak) {
                 intervalFunction = setInterval(this.decrementSecond, 1000, this.getActualTime());
+            } else {
+                this.iconPlay = icons.play;
             }
         },
         getActualTime() {

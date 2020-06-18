@@ -14,7 +14,6 @@ export default new Vuex.Store({
     breaksNumber: 1,
     autoStartPomodoro: true,
     autoStartBreak: true,
-    oneMinuteNotification: false,
   },
   mutations: {
     setPomodoroTime(state, newTime) {
@@ -35,8 +34,8 @@ export default new Vuex.Store({
     setAutoStartBreak(state, newAutoStartBreak) {
       state.autoStartBreak = newAutoStartBreak;
     },
-    setOneMinuteNotification(state, newOneMinuteNotification) {
-      state.oneMinuteNotification = newOneMinuteNotification;
+    setCycles(state, newCycles) {
+      state.cycles = newCycles;
     },
     incrementBreaksNumber(state) {
       state.breaksNumber += 1;

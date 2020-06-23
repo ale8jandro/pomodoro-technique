@@ -17,13 +17,13 @@ export default new Vuex.Store({
   },
   mutations: {
     setPomodoroTime(state, newTime) {
-      state.pomodoroTime = newTime;
+      state.pomodoroTime = +newTime;
     },
     setShortBreakTime(state, newTime) {
-      state.shortBreakTime = newTime;
+      state.shortBreakTime = +newTime;
     },
     setLongBreakTime(state, newTime) {
-      state.longBreakTime = newTime;
+      state.longBreakTime = +newTime;
     },
     setSelectedTime(state, newSelectedTime) {
       state.selectedTime = newSelectedTime;
@@ -35,7 +35,7 @@ export default new Vuex.Store({
       state.autoStartBreak = newAutoStartBreak;
     },
     setCycles(state, newCycles) {
-      state.cycles = newCycles;
+      state.cycles = +newCycles;
     },
     incrementBreaksNumber(state) {
       state.breaksNumber += 1;

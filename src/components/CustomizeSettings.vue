@@ -11,6 +11,17 @@
                     <v-spacer></v-spacer>
                     <v-toolbar-items>
                         <v-btn dark text @click="saveSettings">Save</v-btn>
+                        <v-dialog v-model="dialogConfirm" persistent max-width="290">
+                            <v-card>
+                                <v-card-title class="headline">Warning</v-card-title>
+                                <v-card-text>If you change the settings, the timer will be reset to the new parameters</v-card-text>
+                                <v-card-actions>
+                                    <v-spacer></v-spacer>
+                                    <v-btn color="red darken-1" text @click="dialogConfirm = false">Cancel</v-btn>
+                                    <v-btn color="green darken-1" text @click="acceptDialogConfirm">Accept</v-btn>
+                                </v-card-actions>
+                            </v-card>
+                        </v-dialog>
                     </v-toolbar-items>
                 </v-toolbar>
                 <v-list three-line subheader class="text-left">
@@ -70,6 +81,7 @@ export default {
     name: 'CustomizeSettings',
     data: () => ({
         dialog: false,
+        dialogConfirm: false,
         autoStartPomodoroTemporal: true,
         autoStartBreakTemporal: true,
         pomodoroTimeTemporal: 25,
@@ -95,12 +107,17 @@ export default {
             this.cyclesTemporal = this.cycles;
         },
         saveSettings() {
+            this.dialogConfirm = true;
+        },
+        acceptDialogConfirm() {
+            this.dialogConfirm = false;
             this.setPomodoroTime(this.pomodoroTimeTemporal);
             this.setShortBreakTime(this.shortBreakTimeTemporal);
             this.setLongBreakTime(this.longBreakTimeTemporal);
             this.setAutoStartPomodoro(this.autoStartPomodoroTemporal);
             this.setAutoStartBreak(this.autoStartBreakTemporal);
             this.setCycles(this.cyclesTemporal);
+            this.$eventBus.$emit('resetTimer');
             this.dialog = false;
         },
     },

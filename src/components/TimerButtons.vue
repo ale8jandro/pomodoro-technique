@@ -2,7 +2,7 @@
     <v-container>
         <v-row>
             <v-col>
-                <v-btn icon>
+                <v-btn icon alt="Play Button">
                     <v-icon size="80" color="red" @click="playClick">{{ iconPlay }}</v-icon>
                 </v-btn>
             </v-col>
@@ -58,9 +58,9 @@ export default {
         stopClick() {
             this.resetBreaksNumber();
             this.setTime(this.pomodoroTime);
+            this.setSelectedTime(times.POMODORO_TIME);
         },
         refreshClick() {
-            const actualTime = this.getActualTime();
             this.resetTimer(this.getActualTime());
         },
         nextStage() {
@@ -72,10 +72,10 @@ export default {
             }
         },
         startPomodoroTime() {
-            this.setSelectedTime(times.POMODORO_TIME);
             if (this.selectedTime === times.LONG_BREAK_TIME) {
                 this.stopClick();
             } else {
+                this.setSelectedTime(times.POMODORO_TIME);
                 this.incrementBreaksNumber();
                 this.resetTimer(this.getActualTime());
                 if (this.autoStartPomodoro) {
@@ -115,6 +115,7 @@ export default {
     },
     created() {
         this.$eventBus.$on('setTime', this.setTime);
+        this.$eventBus.$on('resetTimer', this.stopClick);
     },
 }
 </script>

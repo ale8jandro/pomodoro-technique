@@ -2,13 +2,13 @@
     <v-container>
         <v-row>
             <v-col>
-                <v-btn rounded depressed @click="selectPomodoro">Pomodoro</v-btn>
+                <v-btn rounded depressed @click="selectPomodoro" color="red">Pomodoro</v-btn>
             </v-col>
             <v-col>
-                <v-btn rounded depressed @click="selectShortBreak">Short Break</v-btn>
+                <v-btn rounded depressed @click="selectShortBreak" color="teal">Short Break</v-btn>
             </v-col>
             <v-col>
-                <v-btn rounded depressed @click="selectLongBreak">Long Break</v-btn>
+                <v-btn rounded depressed @click="selectLongBreak" color="cyan">Long Break</v-btn>
             </v-col>
         </v-row>
     </v-container>

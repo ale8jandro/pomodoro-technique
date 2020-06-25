@@ -2,7 +2,7 @@
     <v-container>
         <v-row>
             <v-col>
-                <v-btn icon alt="Play Button">
+                <v-btn icon>
                     <v-icon size="80" color="red" @click="playClick">{{ iconPlay }}</v-icon>
                 </v-btn>
             </v-col>

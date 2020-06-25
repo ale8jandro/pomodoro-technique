@@ -6,8 +6,9 @@
                     :key="`${cycle}-step`"
                     :step="cycle"
                     :complete="breaksNumber > cycle"
+                    color="red"
                     >
-                    Step {{ cycle }}
+                    Cycle {{ cycle }}
                 </v-stepper-step>
                 <v-divider
                     v-if="cycle !== cycles"

@@ -14,6 +14,7 @@ export default new Vuex.Store({
     breaksNumber: 1,
     autoStartPomodoro: true,
     autoStartBreak: true,
+    reproduceAudio: true,
   },
   mutations: {
     setPomodoroTime(state, newTime) {
@@ -33,6 +34,9 @@ export default new Vuex.Store({
     },
     setAutoStartBreak(state, newAutoStartBreak) {
       state.autoStartBreak = newAutoStartBreak;
+    },
+    setReproduceAudio(state, newReproduceAudio) {
+      state.reproduceAudio = newReproduceAudio;
     },
     setCycles(state, newCycles) {
       state.cycles = +newCycles;

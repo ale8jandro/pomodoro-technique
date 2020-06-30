@@ -68,6 +68,15 @@
                             <v-list-item-subtitle>Auto start the breaks without interaction of the user.</v-list-item-subtitle>
                         </v-list-item-content>
                     </v-list-item>
+                    <v-list-item>
+                        <v-list-item-action>
+                            <v-checkbox v-model="reproduceAudioTemporal"></v-checkbox>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                            <v-list-item-title>Reproduce Audio</v-list-item-title>
+                            <v-list-item-subtitle>Reproduce a ring when the time is over.</v-list-item-subtitle>
+                        </v-list-item-content>
+                    </v-list-item>
                 </v-list>
             </v-card>
         </v-dialog>
@@ -87,13 +96,14 @@ export default {
         pomodoroTimeTemporal: 25,
         shortBreakTimeTemporal: 5,
         longBreakTimeTemporal: 15,
+        reproduceAudioTemporal: true,
         cyclesTemporal: 4,
     }),
     computed: {
-        ...mapState(['pomodoroTime', 'shortBreakTime', 'longBreakTime', 'autoStartPomodoro', 'autoStartBreak', 'cycles']),
+        ...mapState(['pomodoroTime', 'shortBreakTime', 'longBreakTime', 'autoStartPomodoro', 'autoStartBreak', 'reproduceAudio', 'cycles']),
     },
     methods: {
-        ...mapMutations(['setPomodoroTime', 'setShortBreakTime', 'setLongBreakTime', 'setAutoStartPomodoro', 'setAutoStartBreak', 'setCycles']),
+        ...mapMutations(['setPomodoroTime', 'setShortBreakTime', 'setLongBreakTime', 'setAutoStartPomodoro', 'setAutoStartBreak', 'setReproduceAudio', 'setCycles']),
         openDialog() {
             this.resetForm();
             this.dialog = true;
@@ -104,6 +114,7 @@ export default {
             this.longBreakTimeTemporal = this.longBreakTime;
             this.autoStartPomodoroTemporal = this.autoStartPomodoro;
             this.autoStartBreakTemporal = this.autoStartBreak;
+            this.reproduceAudioTemporal = this.reproduceAudio;
             this.cyclesTemporal = this.cycles;
         },
         saveSettings() {
@@ -116,6 +127,7 @@ export default {
             this.setLongBreakTime(this.longBreakTimeTemporal);
             this.setAutoStartPomodoro(this.autoStartPomodoroTemporal);
             this.setAutoStartBreak(this.autoStartBreakTemporal);
+            this.setReproduceAudio(this.reproduceAudioTemporal);
             this.setCycles(this.cyclesTemporal);
             this.$eventBus.$emit('resetTimer');
             this.dialog = false;

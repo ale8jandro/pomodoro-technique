@@ -2,7 +2,7 @@
     <v-container>
         <v-row>
             <v-col>
-                <div>Pomodoro Technique</div>
+                <v-img src="../../public/logo.png" width="200"></v-img>
             </v-col>
             <v-col>
                 <CustomizeSettings />

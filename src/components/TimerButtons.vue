@@ -1,5 +1,9 @@
 <template>
     <v-container>
+        <audio id="ringAudio">
+            <source src="../../public/ring.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
         <v-row>
             <v-col>
                 <v-btn icon>
@@ -41,7 +45,7 @@ export default {
     }),
     computed: {
         ...mapState('timer', ['counterFinished']),
-        ...mapState(['pomodoroTime', 'shortBreakTime', 'longBreakTime', 'selectedTime', 'cycles', 'breaksNumber', 'autoStartBreak', 'autoStartPomodoro']),
+        ...mapState(['pomodoroTime', 'shortBreakTime', 'longBreakTime', 'selectedTime', 'cycles', 'breaksNumber', 'autoStartBreak', 'autoStartPomodoro', 'reproduceAudio']),
     },
     methods: {
         ...mapMutations('timer', ['decrementSecond', 'startCounting', 'resetTimer']),
@@ -65,6 +69,10 @@ export default {
         },
         nextStage() {
             clearInterval(intervalFunction);
+            if (this.reproduceAudio) {
+                const audioElement = document.getElementById('ringAudio');
+                audioElement.play();
+            }
             if (this.selectedTime === times.POMODORO_TIME) {
                 this.startBreakTime();
             } else {

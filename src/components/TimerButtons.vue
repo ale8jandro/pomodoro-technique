@@ -12,12 +12,12 @@
             </v-col>
             <v-col>
                 <v-btn icon>
-                    <v-icon size="80" color="red" @click="stopClick">mdi-stop-circle</v-icon>
+                    <v-icon size="80" color="red" @click="stopClick">mdi-stop</v-icon>
                 </v-btn>
             </v-col>
             <v-col>
                 <v-btn icon>
-                    <v-icon size="80" color="red" @click="refreshClick">mdi-refresh-circle</v-icon>
+                    <v-icon size="80" color="red" @click="refreshClick">mdi-refresh</v-icon>
                 </v-btn>
             </v-col>
         </v-row>
@@ -28,8 +28,8 @@
 import { mapState, mapMutations } from 'vuex';
 
 const icons = {
-    play: 'mdi-play-circle',
-    pause: 'mdi-pause-circle',
+    play: 'mdi-play',
+    pause: 'mdi-pause',
 };
 const times = {
     POMODORO_TIME: 'pomodoroTime',
@@ -41,7 +41,7 @@ let intervalFunction;
 export default {
     name: 'TimerButtons',
     data: () => ({
-        iconPlay: 'mdi-play-circle',
+        iconPlay: 'mdi-play',
     }),
     computed: {
         ...mapState('timer', ['counterFinished']),
